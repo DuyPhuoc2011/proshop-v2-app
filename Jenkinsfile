@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        nodejs "NodeJS 16" // Name you set in Global Tool Configuration
+    }
     stages {
         stage('Build') {
             steps {
