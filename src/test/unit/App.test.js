@@ -28,6 +28,17 @@ test('renders the App', () => {
 	);
   //const buttonElement = screen.getByText(/Click me/i);
 	const link = screen.getByRole('link', { name: /sign in/i });
-	expect(link).toHaveAttribute('href', '/login');
+	expect(link).toHaveAttribute('href', '/login');	
+});
 
+test('test search button', () => {
+  	render(
+	<Provider store={store}>
+        	<PayPalScriptProvider deferLoading={true}>
+        		<RouterProvider router={router} />
+        	</PayPalScriptProvider>
+      	</Provider>
+	);
+ 	const button = screen.getByRole('button', { name: /Search/i });
+	expect(button).toHaveAttribute('type', 'Submit');
 });
