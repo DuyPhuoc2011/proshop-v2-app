@@ -1,17 +1,27 @@
 pipeline {
-    agent any 
+    agent {
+	docker {
+            image 'node:7.4'
+        }
+    }
     stages {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'npm install'
-                sh 'npm run build'
+		withNPM(npmrcConfig:'my-custom-npmrc') {
+            		echo "Performing npm build..."
+            		sh 'npm install'
+			sh 'npm run build'
+		}
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'npm test'
+		withNPM(npmrcConfig:'my-custom-npmrc') {
+            		echo "Performing npm test..."
+            		sh 'npm test'
+		}
             }
         }
     }
