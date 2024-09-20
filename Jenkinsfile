@@ -9,7 +9,7 @@ pipeline {
             spec:
               containers:
               - name: node
-                image: node:7.4
+                image: node:20.12.1
                 command:
                 - cat
                 tty: true
