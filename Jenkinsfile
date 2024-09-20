@@ -1,7 +1,19 @@
 pipeline {
     agent {
-	docker {
-            image 'node:7.4'
+	kubernetes {
+            label 'npm-build'
+            defaultContainer 'node'
+            yaml """
+            apiVersion: v1
+            kind: Pod
+            spec:
+              containers:
+              - name: node
+                image: node:7.4
+                command:
+                - cat
+                tty: true
+            """
         }
     }
     stages {
