@@ -26,6 +26,8 @@ stages:
     jobs:
       - job: BuildJob
         displayName: 'Build Job'
+        container: 
+          image: 'node:20.12.1'
         steps:
           - task: NodeTool@0
             inputs:
@@ -43,6 +45,8 @@ stages:
     jobs:
       - job: TestJob
         displayName: 'Test Job'
+        container: 
+          image: 'node:20.12.1'
         steps:
           - script: |
               npm test
